@@ -45,7 +45,7 @@ const styleFor = (alpha: number, dark: boolean) => {
 
 export function LiquidAsciiDemo({
   speed = 1,
-  cellSize = 15,
+  cellSize = 12,
   gravity = -25,
   fillHeight = 0.5,
   cursorRadius = 0.25,
@@ -453,19 +453,24 @@ export function LiquidAsciiDemo({
         seed()
         draw()
       }
-      // gentle idle motion when enabled (showcase stays alive)
+      // Idle wave: a slow swell travelling across the surface so the
+      // showcase keeps breathing when untouched. Applies every frame
+      // while idle (no input for 2s); any touch pauses it via lastInput.
       if (c.autoWave && now - lastInput > 2000) {
-        const gx = Math.floor(nx * (0.5 + 0.3 * Math.sin(now * 0.0006)))
-        const wob = Math.sin(now * 0.0021) * 0.9
+        const t = now * 0.0016
+        const span = Math.max(1, W)
         for (let p = 0; p < active; p++) {
           const i = Math.floor(px[p] / h)
-          if (Math.abs(i - gx) > 2) continue
+          if (i < 1 || i >= nx - 1) continue
           const j = Math.floor(py[p] / h)
-          if (j > 0 && j < ny && !fluid[(j - 1) * nx + i] && fluid[j * nx + i]) {
-            pv[p] += wob
-          }
+          if (j <= 0 || j >= ny) continue
+          const k = j * nx + i
+          // surface fluid only: fluid here, air directly above
+          if (!fluid[k] || fluid[k - nx]) continue
+          const phase = (px[p] / span) * Math.PI * 2 - t
+          pv[p] += Math.sin(phase) * 9
+          pu[p] += Math.cos(phase) * 3.5
         }
-        lastInput = now - 1500
       }
       if (!c.autoWave && maxS < 4 && now - lastInput > 900) {
         sleeping = true

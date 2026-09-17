@@ -16,7 +16,7 @@ export type PlaygroundConfig = {
 
 export const DEFAULTS: PlaygroundConfig = {
   speed: 1,
-  cellSize: 15,
+  cellSize: 12,
   gravity: -25,
   fillHeight: 0.5,
   cursorRadius: 0.25,
@@ -43,9 +43,9 @@ function Slider({
 }) {
   return (
     <label className="block">
-      <span className="flex items-center justify-between text-xs font-light text-black/55 dark:text-white/55 mb-1.5">
-        <span className="capitalize">{label}</span>
-        <span className="font-mono text-black/80 dark:text-white/80" aria-hidden="true">{format(value)}</span>
+      <span className="flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400 mb-1.5">
+        <span className="font-mono uppercase tracking-wider">{label}</span>
+        <span className="font-mono text-zinc-900 dark:text-zinc-100" aria-hidden="true">{format(value)}</span>
       </span>
       <input
         type="range"
@@ -56,7 +56,7 @@ function Slider({
         aria-label={label}
         aria-valuetext={format(value)}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full accent-[#7c88e8] dark:accent-[#818cf8] cursor-pointer"
+        className="w-full accent-zinc-900 dark:accent-zinc-100 cursor-pointer"
       />
     </label>
   )
@@ -79,7 +79,7 @@ export function Playground({
   }
 
   return (
-    <div className="rounded-xl border border-black/10 dark:border-white/10 overflow-hidden bg-white/40 dark:bg-black/20">
+    <div className="rounded-2xl border border-zinc-900/10 dark:border-white/10 overflow-hidden bg-zinc-900/[0.015] dark:bg-white/[0.02]">
       <div className="h-[380px] md:h-[440px] relative">
         <LiquidAsciiDemo
           speed={cfg.speed}
@@ -90,19 +90,19 @@ export function Playground({
           cursorForce={cfg.cursorForce}
           autoWave={cfg.autoWave}
         />
-        <p className="pointer-events-none absolute top-3 left-1/2 -translate-x-1/2 max-w-[calc(100%-2rem)] truncate rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-md px-3.5 py-1 text-[11px] font-light text-black/55 dark:text-white/55 whitespace-nowrap">
+        <p className="pointer-events-none absolute top-3 left-3 rounded-full bg-zinc-900/80 dark:bg-black/60 text-white backdrop-blur px-3 py-1 text-[11px] font-mono">
           drag through the fluid
         </p>
       </div>
-      <div className="border-t border-black/10 dark:border-white/10 px-4 py-4 md:px-5">
+      <div className="border-t border-zinc-900/10 dark:border-white/10 px-4 py-4 md:px-5">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-xs uppercase tracking-[0.18em] text-black/40 dark:text-white/40">
+          <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-zinc-400 dark:text-zinc-500">
             Customize
           </h3>
           <button
             type="button"
             onClick={reset}
-            className="inline-flex items-center gap-1.5 text-xs font-light text-black/55 dark:text-white/55 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer"
           >
             <RotateCcw size={12} /> Reset
           </button>
@@ -114,18 +114,18 @@ export function Playground({
           <Slider label="fill height" value={cfg.fillHeight} min={0} max={1} step={0.05} format={(v) => v.toFixed(2)} onChange={(v) => set("fillHeight", v)} />
           <Slider label="cursor radius" value={cfg.cursorRadius} min={0.05} max={0.5} step={0.01} format={(v) => v.toFixed(2)} onChange={(v) => set("cursorRadius", v)} />
           <Slider label="cursor force" value={cfg.cursorForce} min={0} max={200} step={1} format={(v) => `${v}`} onChange={(v) => set("cursorForce", v)} />
-          <div className="flex items-center justify-between text-xs font-light text-black/55 dark:text-white/55">
-            <span id="autowave-label">Auto wave <span className="text-black/35 dark:text-white/35">(idle motion)</span></span>
+          <div className="flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
+            <span id="autowave-label">Auto wave <span className="text-zinc-400 dark:text-zinc-500">(idle motion)</span></span>
             <button
               type="button"
               role="switch"
               aria-checked={cfg.autoWave}
               aria-labelledby="autowave-label"
               onClick={() => set("autoWave", !cfg.autoWave)}
-              className={`relative w-9 h-5 rounded-full transition-colors ${cfg.autoWave ? "bg-[#7c88e8] dark:bg-[#818cf8]" : "bg-black/15 dark:bg-white/15"}`}
+              className={`relative w-9 h-5 rounded-full transition-colors ${cfg.autoWave ? "bg-zinc-900 dark:bg-zinc-100" : "bg-zinc-900/15 dark:bg-white/15"}`}
             >
               <span
-                className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-all ${cfg.autoWave ? "left-[18px]" : "left-0.5"}`}
+                className={`absolute top-0.5 w-4 h-4 rounded-full shadow transition-all ${cfg.autoWave ? "left-[18px] bg-white dark:bg-zinc-900" : "left-0.5 bg-white dark:bg-zinc-400"}`}
               />
             </button>
           </div>

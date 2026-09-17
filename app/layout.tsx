@@ -68,8 +68,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafaf9" },
-    { media: "(prefers-color-scheme: dark)", color: "#090a0d" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
   ],
 }
 
@@ -79,7 +79,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-[#fafaf9] dark:bg-[#090a0d] text-[#121314] dark:text-[#f4f4f5]`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-white dark:bg-[#09090b] text-[#09090b] dark:text-[#fafafa]`}
         suppressHydrationWarning
       >
         <JsonLd

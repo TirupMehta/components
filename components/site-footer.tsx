@@ -21,21 +21,21 @@ const COLS: Array<{ title: string; links: Array<{ label: string; href: string }>
 export function SiteFooter() {
   const year = new Date().getFullYear()
   return (
-    <footer className="mt-16 border-t border-black/10 dark:border-white/10">
-      <div className="max-w-4xl mx-auto w-full px-6 md:px-20 py-10 grid gap-8 sm:grid-cols-[1fr_auto_auto]">
+    <footer className="mt-20 border-t border-zinc-900/10 dark:border-white/10">
+      <div className="max-w-6xl mx-auto w-full px-5 md:px-8 py-12 grid gap-8 sm:grid-cols-[1fr_auto_auto]">
         <div>
           <p className="flex items-center gap-1.5 mb-3" aria-hidden="true">
-            <span className="w-2 h-2 rounded-full bg-[#ff6b6b]/70" />
-            <span className="w-2 h-2 rounded-full bg-[#feca57]/70" />
-            <span className="w-2 h-2 rounded-full bg-[#1dd1a1]/70" />
+            <span className="w-2 h-2 rounded-full bg-[#ff6b6b]" />
+            <span className="w-2 h-2 rounded-full bg-[#feca57]" />
+            <span className="w-2 h-2 rounded-full bg-[#1dd1a1]" />
           </p>
-          <p className="text-sm font-light text-black/55 dark:text-white/55 max-w-xs leading-relaxed">
-            Unique React components I built. Copy the code, own it forever.
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-xs leading-relaxed">
+            Uncommon components for React. Copy the code, own it forever.
           </p>
         </div>
         {COLS.map((c) => (
           <div key={c.title}>
-            <p className="text-xs uppercase tracking-[0.18em] text-black/40 dark:text-white/40 mb-3">
+            <p className="text-xs font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3">
               {c.title}
             </p>
             <ul className="space-y-2">
@@ -43,7 +43,7 @@ export function SiteFooter() {
                 <li key={l.label}>
                   <Link
                     href={l.href}
-                    className="text-sm font-light text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors"
+                    className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                   >
                     {l.label}
                   </Link>
@@ -53,9 +53,9 @@ export function SiteFooter() {
           </div>
         ))}
       </div>
-      <div className="py-5 px-6 text-center border-t border-black/10 dark:border-white/10">
-        <p className="text-black/50 dark:text-white/50 text-sm font-light" suppressHydrationWarning>
-          © {year} {SITE.name}. Unique components built by me.
+      <div className="py-5 px-6 text-center border-t border-zinc-900/10 dark:border-white/10">
+        <p className="text-zinc-400 dark:text-zinc-500 text-sm" suppressHydrationWarning>
+          © {year} {SITE.name}. Designed and built by me.
         </p>
       </div>
     </footer>

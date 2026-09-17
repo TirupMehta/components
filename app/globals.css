@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --accent: #7c88e8;
-  --bg: #fafaf9;
-  --fg: #121314;
-  --border-color: rgba(0, 0, 0, 0.07);
-  --text-muted: rgba(18, 19, 20, 0.45);
-  --text-secondary: rgba(18, 19, 20, 0.68);
+  --accent: #18181b;
+  --bg: #ffffff;
+  --fg: #09090b;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --text-muted: rgba(9, 9, 11, 0.5);
+  --text-secondary: rgba(9, 9, 11, 0.7);
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html.dark {
-  --bg: #090a0d;
-  --fg: #f4f4f5;
+  --bg: #09090b;
+  --fg: #fafafa;
   --border-color: rgba(255, 255, 255, 0.08);
-  --text-muted: rgba(244, 244, 245, 0.42);
-  --text-secondary: rgba(244, 244, 245, 0.65);
-  --accent: #818cf8;
+  --text-muted: rgba(250, 250, 250, 0.5);
+  --text-secondary: rgba(250, 250, 250, 0.7);
+  --accent: #fafafa;
 }
 
 .no-transitions,
@@ -38,6 +38,15 @@ body {
   color: var(--fg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+html.dark ::selection {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 h1, h2, h3 {
@@ -67,29 +76,62 @@ p {
 }
 
 .link-hover {
-  position: relative;
+  text-decoration: underline;
+  text-decoration-color: rgba(128, 128, 128, 0.4);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
 }
 
-.link-hover::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background-color: var(--accent);
-  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.link-hover:hover::after {
-  width: 100%;
+.link-hover:hover {
+  text-decoration-color: currentColor;
 }
 
 .icon-arrow-hover {
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.group:hover .icon-arrow-hover {
+  transform: translate(1px, -1px);
+  opacity: 1;
 }
 
-.group:hover .icon-arrow-hover {
-  transform: translate(1px, -1px) scale(1.1);
-  opacity: 1;
+/* Skiper-style restrained card hover: border darkens, tiny lift, no glow */
+.card-hover {
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.35s var(--ease-spring);
+}
+
+.card-hover:hover {
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+html.dark .card-hover:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+:focus-visible {
+  outline: 2px solid rgba(128, 128, 128, 0.8);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@keyframes heroChar {
+  from {
+    opacity: 0;
+    transform: translateY(112%) rotate(5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-char {
+    animation: heroChar 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
 }

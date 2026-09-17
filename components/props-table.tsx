@@ -7,27 +7,27 @@ export type PropRow = {
 
 export function PropsTable({ rows }: { rows: PropRow[] }) {
   return (
-    <div className="rounded-lg border border-black/10 dark:border-white/10 overflow-hidden">
+    <div className="rounded-xl border border-zinc-900/10 dark:border-white/10 overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full text-sm min-w-[640px]">
           <thead>
-            <tr className="border-b border-black/10 dark:border-white/10 bg-black/[0.025] dark:bg-white/[0.025] text-left">
-              <th className="px-4 py-2.5 font-medium text-xs uppercase tracking-wider text-black/50 dark:text-white/50">Prop</th>
-              <th className="px-4 py-2.5 font-medium text-xs uppercase tracking-wider text-black/50 dark:text-white/50">Type</th>
-              <th className="px-4 py-2.5 font-medium text-xs uppercase tracking-wider text-black/50 dark:text-white/50">Default</th>
-              <th className="px-4 py-2.5 font-medium text-xs uppercase tracking-wider text-black/50 dark:text-white/50">Description</th>
+            <tr className="border-b border-zinc-900/10 dark:border-white/10 bg-zinc-900/[0.03] dark:bg-white/[0.03] text-left">
+              <th className="px-4 py-2.5 font-mono font-medium text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Prop</th>
+              <th className="px-4 py-2.5 font-mono font-medium text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Type</th>
+              <th className="px-4 py-2.5 font-mono font-medium text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Default</th>
+              <th className="px-4 py-2.5 font-mono font-medium text-xs uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Description</th>
             </tr>
           </thead>
-          <tbody className="font-light">
+          <tbody>
             {rows.map((r) => (
               <tr
                 key={r.name}
-                className="border-b border-black/5 dark:border-white/5 last:border-0 hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-colors"
+                className="border-b border-zinc-900/5 dark:border-white/5 last:border-0 hover:bg-zinc-900/[0.02] dark:hover:bg-white/[0.02] transition-colors"
               >
-                <td className="px-4 py-2.5 font-mono text-[13px] text-accent whitespace-nowrap">{r.name}</td>
-                <td className="px-4 py-2.5 font-mono text-xs text-black/60 dark:text-white/60 whitespace-nowrap">{r.type}</td>
-                <td className="px-4 py-2.5 font-mono text-xs text-black/60 dark:text-white/60 whitespace-nowrap">{r.defaultValue}</td>
-                <td className="px-4 py-2.5 text-black/70 dark:text-white/70">{r.description}</td>
+                <td className="px-4 py-2.5 font-mono text-[13px] text-zinc-900 dark:text-zinc-100 whitespace-nowrap">{r.name}</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-zinc-500 dark:text-zinc-400 whitespace-nowrap">{r.type}</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-zinc-500 dark:text-zinc-400 whitespace-nowrap">{r.defaultValue}</td>
+                <td className="px-4 py-2.5 text-zinc-600 dark:text-zinc-400">{r.description}</td>
               </tr>
             ))}
           </tbody>

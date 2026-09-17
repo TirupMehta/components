@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { ArrowLeft, ArrowUpRight, Bot, Check, Maximize2, X } from "lucide-react"
 import { LiquidAsciiDemo } from "@/components/liquid-ascii-demo"
+import { AnimatedNumber } from "@/components/animated-number"
 import { Playground, DEFAULTS, type PlaygroundConfig } from "@/components/playground"
 import { CodeBlock } from "@/components/code-block"
 import { PropsTable, type PropRow } from "@/components/props-table"
@@ -12,7 +13,7 @@ import { SITE, installCommand } from "@/lib/site"
 
 const PROPS: PropRow[] = [
   { name: "speed", type: "number", defaultValue: "1", description: "Simulation timestep multiplier (0.1–3)." },
-  { name: "cellSize", type: "number", defaultValue: "15", description: "Character cell size in pixels (6–30). Drives sim + render together." },
+  { name: "cellSize", type: "number", defaultValue: "12", description: "Character cell size in pixels (6–30). Drives sim + render together." },
   { name: "gravity", type: "number", defaultValue: "-25", description: "Gravity strength, negative = downward (−50–0)." },
   { name: "fillHeight", type: "number", defaultValue: "0.5", description: "Fill fraction of the tank (0–1)." },
   { name: "cursorRadius", type: "number", defaultValue: "0.25", description: "Mouse influence as a fraction of the short side (0–0.5)." },
@@ -77,37 +78,40 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
   }
 
   return (
-    <section className="px-6 md:px-20 pt-10 md:pt-14 pb-10 max-w-4xl mx-auto w-full">
-      <p className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-black/40 dark:text-white/40 mb-4">
-        <Link href="/components" className="link-hover hover:text-accent">Components</Link>
-        <span className="mx-2 text-black/20 dark:text-white/20">/</span>
+    <section className="px-5 md:px-8 pt-12 md:pt-16 pb-10 max-w-6xl mx-auto w-full">
+      <div>
+      <p className="font-mono text-[11px] md:text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-4">
+        <Link href="/components" className="link-hover">Components</Link>
+        <span className="mx-2 text-zinc-300 dark:text-zinc-600">/</span>
         Cursor Effects
-        <span className="mx-2 text-black/20 dark:text-white/20">/</span>
-        <span className="text-black dark:text-white">Liquid Ascii</span>
+        <span className="mx-2 text-zinc-300 dark:text-zinc-600">/</span>
+        <span className="text-zinc-900 dark:text-zinc-50">Liquid Ascii</span>
       </p>
-      <h1 className="text-3xl md:text-5xl font-light tracking-tight text-black dark:text-white">
-        Liquid Ascii
+      <h1 className="font-semibold tracking-[-0.04em] leading-[0.95] text-zinc-900 dark:text-zinc-50 text-5xl md:text-7xl">
+        liquid ascii
       </h1>
-      <p className="mt-4 text-base md:text-lg font-light text-black/60 dark:text-white/60">
-        FLIP fluid simulation rendered as ASCII characters. An ascii liquid
-        effect for React: real fluid dynamics rendered as text, free and
-        open source with zero dependencies.
+      <p className="mt-4 text-base md:text-lg text-zinc-500 dark:text-zinc-400">
+        FLIP fluid simulation rendered as ASCII characters. Real fluid
+        dynamics rendered as text — free, open source, zero dependencies.
       </p>
 
       <div className="mt-5 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-xs px-2.5 py-1 rounded-md bg-black/[0.04] dark:bg-white/[0.06] text-black/60 dark:text-white/60">
+        <span className="font-mono text-xs px-2.5 py-1 rounded-md bg-zinc-900/[0.05] dark:bg-white/[0.07] text-zinc-500 dark:text-zinc-400">
           liquid-ascii
         </span>
-        <span className="font-mono text-xs px-2.5 py-1 rounded-md bg-black/[0.04] dark:bg-white/[0.06] text-black/60 dark:text-white/60">
+        <span className="font-mono text-xs px-2.5 py-1 rounded-md bg-zinc-900/[0.05] dark:bg-white/[0.07] text-zinc-500 dark:text-zinc-400">
           v0.1.0
         </span>
-        <span className="font-mono text-xs px-2.5 py-1 rounded-md bg-black/[0.04] dark:bg-white/[0.06] text-black/60 dark:text-white/60">
+        <span className="font-mono text-xs px-2.5 py-1 rounded-md bg-zinc-900/[0.05] dark:bg-white/[0.07] text-zinc-500 dark:text-zinc-400">
           MIT
+        </span>
+        <span className="font-mono text-xs px-2.5 py-1 rounded-md bg-zinc-900/[0.05] dark:bg-white/[0.07] text-zinc-500 dark:text-zinc-400">
+          Free
         </span>
         <button
           type="button"
           onClick={copyForAI}
-          className="inline-flex items-center gap-1.5 font-sans text-xs px-2.5 py-1 rounded-md border border-black/10 dark:border-white/15 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:border-black/25 dark:hover:border-white/30 transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 font-sans text-xs px-2.5 py-1 rounded-md border border-zinc-900/10 dark:border-white/15 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-900/25 dark:hover:border-white/30 transition-colors cursor-pointer"
         >
           {aiCopied ? <Check size={12} /> : <Bot size={12} />}
           {aiCopied ? "Copied" : "Copy for AI"}
@@ -118,7 +122,7 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
           onClick={() => setFull(true)}
           aria-haspopup="dialog"
           aria-expanded={full}
-          className="inline-flex items-center gap-1.5 font-sans text-xs px-2.5 py-1 rounded-md border border-black/10 dark:border-white/15 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:border-black/25 dark:hover:border-white/30 transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 font-sans text-xs px-2.5 py-1 rounded-md border border-zinc-900/10 dark:border-white/15 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-900/25 dark:hover:border-white/30 transition-colors cursor-pointer"
         >
           <Maximize2 size={12} />
           Fullscreen
@@ -130,7 +134,7 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
           role="dialog"
           aria-modal="true"
           aria-label="Liquid ASCII fullscreen demo"
-          className="fixed inset-0 z-[90] bg-[#fafaf9] dark:bg-[#090a0d]"
+          className="fixed inset-0 z-[90] bg-white dark:bg-[#09090b]"
         >
           <div className="absolute inset-0">
             <LiquidAsciiDemo
@@ -143,7 +147,7 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
               autoWave={cfg.autoWave}
             />
           </div>
-          <p className="pointer-events-none absolute top-5 left-1/2 -translate-x-1/2 max-w-[calc(100%-5rem)] truncate rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-md px-4 py-1.5 text-xs font-light text-black/60 dark:text-white/60 whitespace-nowrap">
+          <p className="pointer-events-none absolute top-5 left-5 rounded-full bg-zinc-900/80 dark:bg-black/60 text-white backdrop-blur px-4 py-1.5 text-xs font-mono">
             drag through the fluid (esc to exit)
           </p>
           <button
@@ -151,7 +155,7 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
             type="button"
             onClick={() => setFull(false)}
             aria-label="Exit fullscreen demo"
-            className="absolute top-4 right-4 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/60 text-black/60 dark:text-white/60 backdrop-blur-md hover:text-black dark:hover:text-white active:scale-95 transition-all"
+            className="absolute top-4 right-4 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-zinc-900/80 dark:bg-black/60 text-white backdrop-blur hover:opacity-80 active:scale-95 transition-all"
           >
             <X size={16} />
           </button>
@@ -162,38 +166,56 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
         <Playground onConfig={setCfg} />
       </div>
 
-      <h2 className="mt-12 mb-4 text-xs md:text-sm uppercase tracking-[0.2em] text-black/40 dark:text-white/40">
-        Code
+      <h2 className="mt-12 mb-4 font-mono text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
+        Install
       </h2>
       <div className="space-y-4">
         <CodeBlock lang="bash" code={installCommand("liquid-ascii")} />
         <CodeBlock lang="tsx" code={usageSnippet(cfg)} />
-        <p className="-mt-1 text-xs font-light text-black/45 dark:text-white/45">
+        <p className="-mt-1 text-xs text-zinc-400 dark:text-zinc-500">
           The snippet above follows your playground settings live. Installed from{" "}
           {SITE.url.replace("https://", "")}, one file, zero dependencies.{" "}
-          <Link href="/docs" className="link-hover hover:text-accent">
+          <Link href="/docs" className="link-hover">
             Getting started guide
           </Link>
           .
         </p>
       </div>
 
-      <h2 className="mt-12 mb-4 text-xs md:text-sm uppercase tracking-[0.2em] text-black/40 dark:text-white/40">
+      <h2 className="mt-12 mb-4 font-mono text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
         Props
       </h2>
       <PropsTable rows={PROPS} />
 
       <h2
-        className="mt-12 mb-4 text-xs md:text-sm uppercase tracking-[0.2em] text-black/40 dark:text-white/40"
+        className="mt-12 mb-4 font-mono text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500"
       >
         How I built it
       </h2>
-      <p className="text-sm md:text-base font-light text-black/60 dark:text-white/60 leading-relaxed mb-6 max-w-2xl">
+      <p className="text-sm md:text-[15px] text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 max-w-2xl">
         No video loops, no CSS blobs. This is a genuine fluid solver: the
         same PIC/FLIP family behind film water effects, compressed until it
         runs at 60fps inside a grid of text characters. One file, zero
         libraries, and every number below matches the code you just installed.
       </p>
+      <dl className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-xl border border-zinc-900/10 dark:border-white/10 bg-zinc-900/10 dark:bg-white/10 overflow-hidden mb-6">
+        {[
+          { v: 20000, label: "particles max" },
+          { v: 30, label: "solver passes" },
+          { v: 4, label: "per cell" },
+          { v: 0, start: 100, label: "dependencies" },
+        ].map((s) => (
+          <div
+            key={s.label}
+            className="px-4 py-3 bg-white dark:bg-[#09090b]"
+          >
+            <dd className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 tabular-nums">
+              <AnimatedNumber value={s.v} start={s.start ?? 0} duration={1400} />
+            </dd>
+            <dt className="mt-1 font-mono text-[11px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500">{s.label}</dt>
+          </div>
+        ))}
+      </dl>
       <div className="grid md:grid-cols-2 gap-4">
         {[
           [
@@ -223,17 +245,17 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
         ].map(([t, b]) => (
           <div
             key={t}
-            className="rounded-xl border border-black/10 dark:border-white/10 p-5"
+            className="rounded-xl border border-zinc-900/10 dark:border-white/10 p-5"
           >
-            <h3 className="font-medium text-black dark:text-white mb-1.5">{t}</h3>
-            <p className="text-sm font-light text-black/60 dark:text-white/60 leading-relaxed">{b}</p>
+            <h3 className="font-medium text-zinc-900 dark:text-zinc-50 mb-1.5">{t}</h3>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{b}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-4 rounded-xl border border-dashed border-black/15 dark:border-white/15 p-5">
-        <h3 className="font-medium text-black dark:text-white mb-1.5">Honest limits</h3>
-        <p className="text-sm font-light text-black/60 dark:text-white/60 leading-relaxed">
+      <div className="mt-4 rounded-xl border border-dashed border-zinc-900/15 dark:border-white/15 p-5">
+        <h3 className="font-medium text-zinc-900 dark:text-zinc-50 mb-1.5">Honest limits</h3>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
           One tank, two dimensions, no obstacles, and cellSize is the whole
           performance budget (6–30px drives sim, particles, and glyphs
           together). The loop sleeps when settled, pauses offscreen and in
@@ -245,15 +267,15 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
         </p>
       </div>
 
-      <div className="mt-6 rounded-xl border border-black/10 dark:border-white/10 p-5">
-        <h3 className="font-medium text-black dark:text-white mb-1.5">Inspiration credit</h3>
-        <p className="text-sm font-light text-black/60 dark:text-white/60 leading-relaxed">
+      <div className="mt-6 rounded-xl border border-zinc-900/10 dark:border-white/10 p-5">
+        <h3 className="font-medium text-zinc-900 dark:text-zinc-50 mb-1.5">Inspiration credit</h3>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
           The concept is inspired by{" "}
           <a
             href="https://pro.reactbits.dev/docs/components/liquid-ascii"
             target="_blank"
             rel="noopener noreferrer"
-            className="link-hover hover:text-accent"
+            className="link-hover"
           >
             React Bits&apos; Liquid ASCII
           </a>
@@ -262,31 +284,32 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
         </p>
       </div>
 
-      <h2 className="mt-12 mb-4 text-xs md:text-sm uppercase tracking-[0.2em] text-black/40 dark:text-white/40">
+      <h2 className="mt-12 mb-4 font-mono text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
         Questions
       </h2>
-      <div className="rounded-xl border border-black/10 dark:border-white/10 divide-y divide-black/5 dark:divide-white/5">
+      <div className="rounded-xl border border-zinc-900/10 dark:border-white/10 divide-y divide-zinc-900/5 dark:divide-white/5 overflow-hidden">
         {faqs.map(({ q, a }) => (
           <div key={q} className="px-5 py-4">
-            <h3 className="font-medium text-black dark:text-white mb-1">{q}</h3>
-            <p className="text-sm font-light text-black/60 dark:text-white/60 leading-relaxed">{a}</p>
+            <h3 className="font-medium text-zinc-900 dark:text-zinc-50 mb-1">{q}</h3>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{a}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-12 flex items-center justify-between border-t border-black/10 dark:border-white/10 pt-6">
+      <div className="mt-12 flex items-center justify-between border-t border-zinc-900/10 dark:border-white/10 pt-6">
         <Link
           href="/components"
-          className="group inline-flex items-center gap-1.5 text-sm font-light text-black/55 dark:text-white/55 hover:text-black dark:hover:text-white transition-colors"
+          className="group inline-flex items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
         >
           <ArrowLeft size={14} /> All components
         </Link>
         <Link
           href="/docs"
-          className="group inline-flex items-center gap-1 text-sm font-light text-black/55 dark:text-white/55 hover:text-black dark:hover:text-white transition-colors"
+          className="group inline-flex items-center gap-1 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
         >
           Install guide <ArrowUpRight size={14} className="icon-arrow-hover" />
         </Link>
+      </div>
       </div>
     </section>
   )
