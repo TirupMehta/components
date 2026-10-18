@@ -1,15 +1,29 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
+  "redirects": [
+    {
+      "source": "/components/:path*",
+      "has": [{ "type": "host", "value": "components.tirup.in" }],
+      "destination": "https://tirup.in/components/:path*",
+      "permanent": true
+    },
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "components.tirup.in" }],
-      "destination": "/components/:path*"
+      "destination": "https://tirup.in/components/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/components/:path*",
+      "has": [{ "type": "host", "value": "www.components.tirup.in" }],
+      "destination": "https://tirup.in/components/:path*",
+      "permanent": true
     },
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "www.components.tirup.in" }],
-      "destination": "/components/:path*"
+      "destination": "https://tirup.in/components/:path*",
+      "permanent": true
     }
   ]
 }

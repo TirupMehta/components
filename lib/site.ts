@@ -2,10 +2,9 @@
  * Single source of truth for site branding + registry URLs.
  * Renaming the site or moving domains = edit here (and scripts/build-registry.mjs).
  *
- * Canonical home is tirup.in/components. Two serving paths reach the app:
- * the canonical subpath (proxied from the main site) and the
- * components.tirup.in subdomain, which serves directly via a host-keyed
- * edge rewrite in vercel.json so it never depends on dashboard wiring.
+ * Canonical home is tirup.in/components. The components.tirup.in subdomain
+ * is a redirect-only alias (edge 308s in vercel.json) — the canonical
+ * subpath is served by that project's proxy (env COMPONENTS_APP_URL).
  */
 export const SITE = {
   name: "Components",

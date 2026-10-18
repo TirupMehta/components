@@ -7,14 +7,9 @@ Live: https://tirup.in/components
 
 The canonical home is `tirup.in/components` — every URL hangs off the main
 domain, and the pages' canonical tags point there, so search equity lands
-on tirup.in. Two serving paths reach the same app:
-
-- `tirup.in/components/<path>` — proxied from the main site (env
-  `COMPONENTS_APP_URL` on that project; falls back to a 308 to the
-  subdomain if unset, so the main domain never dead-ends)
-- `components.tirup.in/<path>` — serves the app directly (host-keyed edge
-  rewrite in `vercel.json`), zero wiring, works even if the main site's
-  proxy is ever misconfigured
+on tirup.in. `components.tirup.in` is kept as a redirect-only alias
+(host-conditioned 308s at the edge in `vercel.json`) so nothing that ever
+pointed at the subdomain dead-ends, while it never ranks or serves.
 
 ## Components
 
