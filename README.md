@@ -50,9 +50,10 @@ Runs automatically on `prebuild`.
 
 The app sets `basePath: "/components"` and is proxied from the main site:
 the tirup.in project rewrites `/components/*` to this project's deployment
-URL. `middleware.ts` 308s any request on `lib.tirup.in` /
-`components.tirup.in` to `tirup.in/components/...` so the subdomains stay
-valid forever but never rank.
+URL (env `COMPONENTS_APP_URL`). Legacy hosts are redirected at the Vercel
+edge by `vercel.json` (`lib.tirup.in` / `components.tirup.in` /
+their www forms → `tirup.in/components/…`, 308), with `proxy.ts` as an
+in-app fallback — so the subdomains stay valid forever but never rank.
 
 ## License
 

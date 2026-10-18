@@ -4,13 +4,14 @@ import { NextResponse, type NextRequest } from "next/server"
  * Legacy hosts must never rank — every request on them 308s to the canonical
  * root domain, so all traffic, links and search equity land on tirup.in.
  *
- * This also keeps every old shadcn install link alive forever:
- *   lib.tirup.in/r/liquid-ascii.json      -> tirup.in/components/r/liquid-ascii.json
+ * IMPORTANT: with basePath set, Next (and this proxy) only runs for paths
+ * under /components — a request to "/" on a legacy host never reaches the
+ * app at all (Vercel edge returns a bare 404 first). The real redirects
+ * therefore live in vercel.json (edge-level, host-conditioned), which fires
+ * before everything. This file stays as an in-app fallback for
+ * under-basePath paths only and keeps every old shadcn install link alive:
  *   lib.tirup.in/components/liquid-ascii  -> tirup.in/components/liquid-ascii
  *   lib.tirup.in/docs                     -> tirup.in/components/docs
- *
- * Path mapping is identical whether or not Next strips the basePath before
- * the proxy (middleware) runs, so it is stable across Next versions.
  */
 const LEGACY_HOSTS = new Set([
   "lib.tirup.in",
