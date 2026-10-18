@@ -5,8 +5,8 @@ const COLS: Array<{ title: string; links: Array<{ label: string; href: string }>
   {
     title: "Components",
     links: [
-      { label: "All components", href: "/components" },
-      { label: "Liquid Ascii", href: "/components/liquid-ascii" },
+      { label: "All components", href: "/all" },
+      { label: "Liquid Ascii", href: "/liquid-ascii" },
     ],
   },
   {

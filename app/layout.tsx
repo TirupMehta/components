@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { JsonLd } from "@/components/json-ld"
-import { SITE, AUTHOR } from "@/lib/site"
+import { SITE, AUTHOR, absoluteUrl } from "@/lib/site"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: SITE.name,
     locale: "en_US",
-    url: "/",
+    url: absoluteUrl("/"),
     title: `${SITE.name}: Unique React components I built`,
     description: SITE.description,
   },

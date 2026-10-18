@@ -3,12 +3,12 @@ import Link from "next/link"
 import { ArrowLeft, ArrowUpRight } from "lucide-react"
 import { CodeBlock } from "@/components/code-block"
 import { Reveal } from "@/components/reveal"
-import { SITE, installCommand, namespaceAddCommand } from "@/lib/site"
+import { SITE, installCommand, namespaceAddCommand, absoluteUrl } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Docs",
   description: "Install the components I built: registry setup, theming, mobile, performance.",
-  alternates: { canonical: "/docs" },
+  alternates: { canonical: absoluteUrl("/docs") },
 }
 
 const STEPS: Array<{ title: string; body: React.ReactNode }> = [
@@ -17,7 +17,7 @@ const STEPS: Array<{ title: string; body: React.ReactNode }> = [
     body: (
       <>
         Browse{" "}
-        <Link href="/components" className="link-hover">
+        <Link href="/all" className="link-hover">
           components
         </Link>
         , open one, tune the playground until it feels right, then copy
@@ -159,13 +159,13 @@ export default function DocsPage() {
       <Reveal>
         <div className="mt-10 max-w-3xl flex items-center justify-between border-t border-zinc-900/10 dark:border-white/10 pt-6">
           <Link
-            href="/components"
+            href="/all"
             className="group inline-flex items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           >
             <ArrowLeft size={14} /> All components
           </Link>
           <Link
-            href="/components/liquid-ascii"
+            href="/liquid-ascii"
             className="group inline-flex items-center gap-1 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           >
             Open playground <ArrowUpRight size={14} className="icon-arrow-hover" />

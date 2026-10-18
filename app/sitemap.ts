@@ -8,8 +8,8 @@ const MODIFIED = new Date("2026-09-01")
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: BASE, lastModified: MODIFIED, changeFrequency: "weekly", priority: 1 },
-    { url: `${BASE}/components`, lastModified: MODIFIED, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE}/components/liquid-ascii`, lastModified: MODIFIED, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/all`, lastModified: MODIFIED, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/liquid-ascii`, lastModified: MODIFIED, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE}/docs`, lastModified: MODIFIED, changeFrequency: "monthly", priority: 0.6 },
   ]
 }

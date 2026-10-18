@@ -4,10 +4,12 @@ import { ArrowUpRight } from "lucide-react"
 import { LiquidAsciiDemo } from "@/components/liquid-ascii-demo"
 import { Reveal } from "@/components/reveal"
 
+import { absoluteUrl } from "@/lib/site"
+
 export const metadata: Metadata = {
-  title: "Components",
+  title: "All components",
   description: "Unique React components I built. Live, self-owned, dependency-free.",
-  alternates: { canonical: "/components" },
+  alternates: { canonical: absoluteUrl("/all") },
 }
 
 export default function ComponentsPage() {

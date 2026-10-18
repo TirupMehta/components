@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { LiquidAsciiDoc } from "./doc-client"
 import { JsonLd } from "@/components/json-ld"
-import { SITE, AUTHOR, installCommand } from "@/lib/site"
+import { SITE, AUTHOR, installCommand, absoluteUrl } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Liquid Ascii: ASCII Liquid Fluid Effect for React",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "shadcn ascii component",
     "FLIP fluid ASCII",
   ],
-  alternates: { canonical: "/components/liquid-ascii" },
+  alternates: { canonical: absoluteUrl("/liquid-ascii") },
   openGraph: {
     title: "Liquid Ascii: ASCII Liquid Fluid Effect for React",
     description:
@@ -58,11 +58,11 @@ export default function LiquidAsciiPage() {
           "@graph": [
             {
               "@type": "SoftwareSourceCode",
-              "@id": `${SITE.url}/components/liquid-ascii#software`,
+              "@id": `${SITE.url}/liquid-ascii#software`,
               name: "Liquid Ascii",
               description:
                 "Free React component (ascii liquid effect) that renders a real-time FLIP fluid simulation as ASCII text. Zero dependencies, MIT licensed.",
-              url: `${SITE.url}/components/liquid-ascii`,
+              url: `${SITE.url}/liquid-ascii`,
               programmingLanguage: "TypeScript",
               runtimePlatform: "React",
               license: "https://opensource.org/licenses/MIT",
@@ -89,14 +89,14 @@ export default function LiquidAsciiPage() {
                 {
                   "@type": "ListItem",
                   position: 2,
-                  name: "Components",
-                  item: `${SITE.url}/components`,
+                  name: "All components",
+                  item: `${SITE.url}/all`,
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: "Liquid Ascii",
-                  item: `${SITE.url}/components/liquid-ascii`,
+                  item: `${SITE.url}/liquid-ascii`,
                 },
               ],
             },

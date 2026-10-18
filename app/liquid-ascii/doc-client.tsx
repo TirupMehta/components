@@ -81,7 +81,7 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
     <section className="px-5 md:px-8 pt-12 md:pt-16 pb-10 max-w-6xl mx-auto w-full">
       <div>
       <p className="font-mono text-[11px] md:text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-4">
-        <Link href="/components" className="link-hover">Components</Link>
+        <Link href="/all" className="link-hover">Components</Link>
         <span className="mx-2 text-zinc-300 dark:text-zinc-600">/</span>
         Cursor Effects
         <span className="mx-2 text-zinc-300 dark:text-zinc-600">/</span>
@@ -298,7 +298,7 @@ export function LiquidAsciiDoc({ faqs }: { faqs: Array<{ q: string; a: string }>
 
       <div className="mt-12 flex items-center justify-between border-t border-zinc-900/10 dark:border-white/10 pt-6">
         <Link
-          href="/components"
+          href="/all"
           className="group inline-flex items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
         >
           <ArrowLeft size={14} /> All components

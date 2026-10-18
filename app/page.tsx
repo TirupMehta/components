@@ -4,12 +4,12 @@ import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { LiquidAsciiDemo } from "@/components/liquid-ascii-demo"
 import { AnimatedNumber } from "@/components/animated-number"
 import { Reveal } from "@/components/reveal"
-import { SITE } from "@/lib/site"
+import { SITE, absoluteUrl } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: `${SITE.name}: Unique React components I built`,
   description: SITE.description,
-  alternates: { canonical: "/" },
+  alternates: { canonical: absoluteUrl("/") },
 }
 
 const SPECS = [
@@ -43,7 +43,7 @@ export default function Home() {
       <section className="px-5 md:px-8 pt-10 md:pt-16 max-w-6xl mx-auto w-full">
         <div className="flex items-center justify-between border-b border-zinc-900/10 dark:border-white/10 pb-4">
           <p className="font-mono text-[11px] md:text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
-            lib.tirup.in
+            tirup.in/components
           </p>
           <p className="font-mono text-[11px] md:text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
             vol. 001 — live drop
@@ -63,7 +63,7 @@ export default function Home() {
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap items-center gap-2.5">
                 <Link
-                  href="/components/liquid-ascii"
+                  href="/liquid-ascii"
                   className="group inline-flex items-center gap-1.5 h-11 pl-6 pr-5 text-sm font-medium rounded-full bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900 hover:opacity-85 transition-opacity active:scale-[0.98]"
                 >
                   Open the playground
@@ -91,7 +91,7 @@ export default function Home() {
 
         <Reveal delay={100}>
           <Link
-            href="/components/liquid-ascii"
+            href="/liquid-ascii"
             className="card-hover group mt-10 block relative overflow-hidden rounded-3xl border border-zinc-900/10 dark:border-white/10 h-[340px] md:h-[460px] bg-zinc-900/[0.015] dark:bg-white/[0.02]"
           >
             <LiquidAsciiDemo autoWave cellSize={11} />
@@ -117,7 +117,7 @@ export default function Home() {
               01 — Outstanding component
             </h2>
             <Link
-              href="/components"
+              href="/all"
               className="group hidden sm:inline-flex items-center gap-1 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
             >
               Explore all <ArrowUpRight size={14} className="icon-arrow-hover" />
@@ -129,7 +129,7 @@ export default function Home() {
         </Reveal>
         <Reveal delay={80}>
           <Link
-            href="/components/liquid-ascii"
+            href="/liquid-ascii"
             className="card-hover group flex items-center justify-between gap-4 rounded-2xl border border-zinc-900/10 dark:border-white/10 px-5 md:px-6 py-5 bg-zinc-900/[0.015] dark:bg-white/[0.02]"
           >
             <div className="flex items-baseline gap-4 min-w-0">
@@ -210,7 +210,7 @@ export default function Home() {
               </p>
             </div>
             <Link
-              href="/components"
+              href="/all"
               className="group inline-flex items-center gap-1.5 h-10 pl-5 pr-4 text-sm font-medium rounded-full bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900 hover:opacity-85 transition-opacity active:scale-[0.98] shrink-0"
             >
               See what&apos;s live

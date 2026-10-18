@@ -1,13 +1,20 @@
-# lib.tirup.in
+# Components
 
-Components library. Unique React components I built, with live playgrounds.
+Unique React components I built, with live playgrounds.
 Copy the code, own it forever.
 
-Live: https://lib.tirup.in
+Live: https://tirup.in/components
+
+The canonical home is `tirup.in/components` — every URL hangs off the main
+domain. The old hosts are kept alive as permanent redirects so old install
+links never break:
+
+- `lib.tirup.in/<path>` → `tirup.in/components/<path>` (308)
+- `components.tirup.in/<path>` → `tirup.in/components/<path>` (308)
 
 ## Components
 
-- **Liquid Ascii** (`liquid-ascii`): FLIP fluid simulation rendered as ASCII characters. Live at `/components/liquid-ascii`.
+- **Liquid Ascii** (`liquid-ascii`): FLIP fluid simulation rendered as ASCII characters. Live at `/liquid-ascii`.
 
 ## Getting started
 
@@ -19,13 +26,13 @@ npm run dev
 Install any component in one command. No setup:
 
 ```bash
-npx shadcn@latest add https://lib.tirup.in/r/liquid-ascii.json
+npx shadcn@latest add https://tirup.in/components/r/liquid-ascii.json
 ```
 
 Optional namespace (register once, then short names):
 
 ```bash
-npx shadcn@latest registry add @mehta=https://lib.tirup.in/r/{name}.json
+npx shadcn@latest registry add @mehta=https://tirup.in/components/r/{name}.json
 npx shadcn@latest add @mehta/liquid-ascii
 ```
 
@@ -38,6 +45,14 @@ npm run registry
 ```
 
 Runs automatically on `prebuild`.
+
+### Serving under tirup.in
+
+The app sets `basePath: "/components"` and is proxied from the main site:
+the tirup.in project rewrites `/components/*` to this project's deployment
+URL. `middleware.ts` 308s any request on `lib.tirup.in` /
+`components.tirup.in` to `tirup.in/components/...` so the subdomains stay
+valid forever but never rank.
 
 ## License
 

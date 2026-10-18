@@ -6,7 +6,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { SITE } from "@/lib/site"
 
 const NAV = [
-  { label: "Components", href: "/components" },
+  { label: "Components", href: "/all" },
   { label: "Docs", href: "/docs" },
 ] as const
 

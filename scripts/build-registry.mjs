@@ -8,8 +8,8 @@
  * Source of truth is always components/*.tsx. Never hand-edit public/r.
  *
  * Install flow this enables (in the user's project, easiest first):
- *   1. npx shadcn@latest add https://lib.tirup.in/r/liquid-ascii.json
- *   2. ...or register once: npx shadcn@latest registry add @mehta=https://lib.tirup.in/r/{name}.json
+ *   1. npx shadcn@latest add https://tirup.in/components/r/liquid-ascii.json
+ *   2. ...or register once: npx shadcn@latest registry add @mehta=https://tirup.in/components/r/{name}.json
  *      then npx shadcn@latest add @mehta/liquid-ascii
  *
  * Keep BASE_URL / author in sync with lib/site.ts.
@@ -21,7 +21,7 @@ import { fileURLToPath } from "node:url"
 const root = join(dirname(fileURLToPath(import.meta.url)), "..")
 const outDir = join(root, "public", "r")
 
-const BASE_URL = "https://lib.tirup.in"
+const BASE_URL = "https://tirup.in/components"
 
 const ITEMS = [
   {
@@ -31,7 +31,7 @@ const ITEMS = [
     type: "registry:component",
     title: "Liquid Ascii",
     description: "FLIP fluid simulation rendered as ASCII characters.",
-    docs: `${BASE_URL}/components/liquid-ascii`,
+    docs: `${BASE_URL}/liquid-ascii`,
   },
 ]
 
@@ -53,7 +53,7 @@ for (const item of ITEMS) {
     title: item.title,
     description: item.description,
     docs: item.docs,
-    author: "lib.tirup.in <contact@tirup.in>",
+    author: "tirup.in/components <contact@tirup.in>",
     dependencies: [],
     devDependencies: [],
     registryDependencies: [],
