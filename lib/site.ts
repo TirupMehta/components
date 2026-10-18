@@ -2,8 +2,8 @@
  * Single source of truth for site branding + registry URLs.
  * Renaming the site or moving domains = edit here (and scripts/build-registry.mjs).
  *
- * Canonical home is tirup.in/components. Legacy hosts (lib.tirup.in,
- * components.tirup.in) 308-redirect every path here via middleware.ts.
+ * Canonical home is tirup.in/components. The only legacy host
+ * (components.tirup.in) 308-redirects every path here via vercel.json.
  */
 export const SITE = {
   name: "Components",
