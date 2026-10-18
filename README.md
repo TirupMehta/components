@@ -6,10 +6,15 @@ Copy the code, own it forever.
 Live: https://tirup.in/components
 
 The canonical home is `tirup.in/components` — every URL hangs off the main
-domain. The old `components.tirup.in` alias is kept as a permanent
-redirect so past links never break:
+domain, and the pages' canonical tags point there, so search equity lands
+on tirup.in. Two serving paths reach the same app:
 
-- `components.tirup.in/<path>` → `tirup.in/components/<path>` (308)
+- `tirup.in/components/<path>` — proxied from the main site (env
+  `COMPONENTS_APP_URL` on that project; falls back to a 308 to the
+  subdomain if unset, so the main domain never dead-ends)
+- `components.tirup.in/<path>` — serves the app directly (host-keyed edge
+  rewrite in `vercel.json`), zero wiring, works even if the main site's
+  proxy is ever misconfigured
 
 ## Components
 

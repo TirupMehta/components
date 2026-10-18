@@ -4,17 +4,19 @@ const nextConfig = {
   poweredByHeader: false,
   /**
    * Serves the app under tirup.in/components — canonical URLs get the equity,
-   * not the subdomains. middleware.ts 308s every legacy host path here.
+   * not the subdomains.
+   *
+   * Serving model:
+   *  - tirup.in/components/*  canonical; proxied from the main site via the
+   *    COMPONENTS_APP_URL rewrite on that project
+   *  - components.tirup.in/*  serves the same app directly — a host-keyed
+   *    edge rewrite in vercel.json maps its root onto /components, so the
+   *    subdomain works with zero extra dashboard wiring
+   *
+   * If COMPONENTS_APP_URL is unset on the main site, that project falls back
+   * to a 308 redirect to the subdomain instead of 404ing.
    */
   basePath: "/components",
-  async redirects() {
-    return [
-      // The old listing route flattens to the homepage under the subpath
-      // (tirup.in/components/components would be silly). Exact match only —
-      // a /components/:path* catch-all would loop on the /r registry routes.
-      { source: "/components", destination: "/", permanent: true },
-    ]
-  },
 }
 
 export default nextConfig
