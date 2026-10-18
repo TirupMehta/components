@@ -5,11 +5,10 @@ Copy the code, own it forever.
 
 Live: https://tirup.in/components
 
-The canonical home is `tirup.in/components` — every URL hangs off the main
-domain, and the pages' canonical tags point there, so search equity lands
-on tirup.in. `components.tirup.in` is kept as a redirect-only alias
-(host-conditioned 308s at the edge in `vercel.json`) so nothing that ever
-pointed at the subdomain dead-ends, while it never ranks or serves.
+The canonical home is `tirup.in/components` — the only URL. The site is
+a standalone Next.js app (`basePath: "/components"`, routes flattened so
+component pages live at `/liquid-ascii`, index at `/all`) proxied from
+the tirup.in main site via `COMPONENTS_APP_URL`.
 
 ## Components
 
